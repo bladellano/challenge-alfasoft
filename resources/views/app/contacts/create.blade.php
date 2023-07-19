@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Contact Edit') }}</div>
+                <div class="card-header">{{ __('Contact New') }}</div>
 
                 <div class="card-body">
 
@@ -17,13 +17,9 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('contacts.update', $contact) }}">
-
-                        @method('PUT')
-
+                    <form method="POST" action="{{ route('contacts.store') }}">
                         @include('app.contacts.form')
-
-                      </form>
+                    </form>
 
                 </div>
 

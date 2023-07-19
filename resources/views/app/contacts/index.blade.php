@@ -9,6 +9,8 @@
 
                 <div class="card-body">
 
+                    @include('app.contacts.menu')
+
                     @if(Session::has('message'))
                         <div class="alert alert-success">
                             {{ Session::get('message') }}
@@ -36,14 +38,14 @@
                                     <td>{{ $contact->name }}</td>
                                     <td>{{ $contact->contact }}</td>
                                     <td>{{ $contact->email }}</td>
-                                    <td> <a class="btn btn-warning btn-sm" href="{{ route('contacts.edit', $contact) }}">Edit</a> </td>
+                                    <td> <a class="btn btn-outline-warning btn-sm" href="{{ route('contacts.edit', $contact) }}">Edit</a> </td>
                                     <td>
                                         <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy',['contact' => $contact->id]) }}">
                                             @method('DELETE')
                                             @csrf
                                             <a
                                                 href="#"
-                                                class="btn btn-danger btn-sm"
+                                                class="btn btn-outline-danger btn-sm"
                                                 onclick="document.getElementById('form_{{$contact->id}}').submit()">
                                                 Delete
                                             </a>
