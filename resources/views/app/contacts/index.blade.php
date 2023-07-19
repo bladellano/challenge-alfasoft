@@ -35,12 +35,12 @@
 
                                 <tr>
                                     <th scope="row">{{ $contact->id }}</th>
-                                    <td>{{ $contact->name }}</td>
+                                    <td> <a href="{{ route('contacts.show',$contact) }}"> {{ $contact->name }}</a></td>
                                     <td>{{ $contact->contact }}</td>
                                     <td>{{ $contact->email }}</td>
                                     <td> <a class="btn btn-outline-warning btn-sm" href="{{ route('contacts.edit', $contact) }}">Edit</a> </td>
                                     <td>
-                                        <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy',['contact' => $contact->id]) }}">
+                                        <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy', $contact) }}">
                                             @method('DELETE')
                                             @csrf
                                             <a

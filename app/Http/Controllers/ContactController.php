@@ -50,8 +50,7 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
-        //
-
+        return view('app.contacts.show', ['contact' => $contact]);
     }
 
     /**

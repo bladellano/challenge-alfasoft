@@ -23,7 +23,8 @@ class Contact extends Model
         parent::boot();
 
         static::creating(function ($contact) {
-            $contact->user_id = auth()->id();
+            if (auth()->check())
+                $contact->user_id = auth()->id();
         });
     }
 }
