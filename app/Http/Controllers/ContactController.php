@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactUpdateRequest;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,7 @@ class ContactController extends Controller
      */
     public function edit(Contact $contact)
     {
-        //
+        return view('app.contacts.edit', ['contact' => $contact]);
     }
 
     /**
@@ -68,9 +69,10 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(ContactUpdateRequest $request, Contact $contact)
     {
-        //
+        $contact->update($request->all());
+        return redirect()->route('contacts.index')->with('message', 'Contact updated successfully');
     }
 
     /**

@@ -78,6 +78,11 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <div class="container text-center">
+            <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+        </div>
+
     </div>
 </body>
 </html>
