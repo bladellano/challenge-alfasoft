@@ -36,6 +36,10 @@ DB_DATABASE=recruitment
 DB_USERNAME=root
 DB_PASSWORD=root
 ```
+Subir a base de dados:
+```
+php artisan migrate && php artisan db:seed
+```
 
 Subir o projeto:
 ```
