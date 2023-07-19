@@ -12,4 +12,18 @@ class Contact extends Model
     use SoftDeletes;
 
     protected $fillable = ['name','contact','email'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($contact) {
+            $contact->user_id = auth()->id();
+        });
+    }
 }

@@ -80,7 +80,7 @@
         </main>
 
         <div class="container text-center">
-            <button onclick="window.history.back()" class="btn btn-secondary">Back</button>
+            <button onclick="window.history.back()" class="btn btn-sm btn-primary">Back</button>
         </div>
 
     </div>
