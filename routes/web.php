@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('contacts', ContactController::class);
+
+// Route::resource('contacts', ContactController::class);
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('contacts', ContactController::class);
+});
+
+Auth::routes();
+
