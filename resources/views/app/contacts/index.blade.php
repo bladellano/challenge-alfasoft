@@ -9,6 +9,12 @@
 
                 <div class="card-body">
 
+                    @if(Session::has('message'))
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+
                     <table class="table">
 
                         <thead>
@@ -31,7 +37,18 @@
                                     <td>{{ $contact->contact }}</td>
                                     <td>{{ $contact->email }}</td>
                                     <td>[E]</td>
-                                    <td>[X]</td>
+                                    <td>
+                                        <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy',['contact' => $contact->id]) }}">
+                                            @method('DELETE')
+                                            @csrf
+                                            <a
+                                                href="#"
+                                                class="btn btn-danger btn-sm"
+                                                onclick="document.getElementById('form_{{$contact->id}}').submit()">
+                                                Excluir
+                                            </a>
+                                        </form>
+                                    </td>
                                 </tr>
 
                             @endforeach
@@ -39,15 +56,11 @@
                         </tbody>
                       </table>
 
-                      {{ $contacts->links() }}
-{{--
-                    @foreach ($contacts as $contact)
-                        {{ $contact->id }}
-                    @endforeach
-
-                    @if ($contacts->hasPages())
-                        {{ $contacts->links() }}
-                    @endif --}}
+                      <div class="d-flex justify-content-center">
+                          @if ($contacts->hasPages())
+                            {{ $contacts->links() }}
+                          @endif
+                      </div>
 
                 </div>
             </div>
