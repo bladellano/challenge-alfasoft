@@ -46,6 +46,11 @@ Subir o projeto:
 php artisan serve --port=8080
 ```
 
+Tests:
+```
+php artisan test
+```
+
 Clique: `http://127.0.0.1:8080/`
 # Desenvolvido por
 
