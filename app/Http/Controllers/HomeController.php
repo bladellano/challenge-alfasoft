@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Services\ContactService;
 
 class HomeController extends Controller
 {
+    private $contactService;
+
+    public function __construct(ContactService $service)
+    {
+        $this->contactService = $service;
+    }
+
     public function index()
     {
-        $contacts = Contact::paginate(10);
+
+        $contacts = $this->contactService->getAll();
         return view('app.contacts.guest', ['contacts' => $contacts]);
     }
 }
