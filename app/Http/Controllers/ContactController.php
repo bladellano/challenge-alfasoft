@@ -72,27 +72,28 @@ class ContactController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function update(ContactUpdateRequest $request, Contact $contact)
+    * Update the specified resource in storage.
+    *
+    * @param ContactUpdateRequest $request
+    * @param integer $id
+    * @return void
+    */
+    public function update(ContactUpdateRequest $request, int $id)
     {
-        $this->service->update($contact->id,$request->all());
+        $this->service->update($id, $request->all());
         return redirect()->route('contacts.index')->with('message', 'Contact updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Contact  $contact
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Contact $contact)
+    *
+    * @param integer $id
+    * @return void
+    */
+    public function destroy(int $id)
     {
-        $this->service->delete($contact->id);
+        $this->service->delete($id);
+
         return redirect()->route('contacts.index')->with('message', 'Contact deleted successfully');
     }
 
