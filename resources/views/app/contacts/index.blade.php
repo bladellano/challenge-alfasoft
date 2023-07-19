@@ -36,7 +36,7 @@
                                     <td>{{ $contact->name }}</td>
                                     <td>{{ $contact->contact }}</td>
                                     <td>{{ $contact->email }}</td>
-                                    <td>[E]</td>
+                                    <td> <a class="btn btn-warning btn-sm" href="{{ route('contacts.edit', $contact) }}">Edit</a> </td>
                                     <td>
                                         <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy',['contact' => $contact->id]) }}">
                                             @method('DELETE')
@@ -45,7 +45,7 @@
                                                 href="#"
                                                 class="btn btn-danger btn-sm"
                                                 onclick="document.getElementById('form_{{$contact->id}}').submit()">
-                                                Excluir
+                                                Delete
                                             </a>
                                         </form>
                                     </td>
