@@ -5,21 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Contacts') }}</div>
+                <div class="card-header">{{ __('Displaying contact list for Guest') }}</div>
 
                 <div class="card-body">
 
                     @include('app.contacts.menu')
 
-                    @if(Session::has('message'))
-                        <div class="alert alert-success">
-                            {{ Session::get('message') }}
-                        </div>
-                    @endif
-
                     @include('app.contacts.list')
 
                 </div>
+
             </div>
         </div>
     </div>

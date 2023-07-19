@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Contact New') }}</div>
+                <div class="card-header">{{ __('Contact Show') }}</div>
 
                 <div class="card-body">
 
@@ -14,17 +14,18 @@
                     <h5 class="card-title"> {{ $contact->name }} </h5>
                     <p class="card-text"> {{ $contact->contact }} </p>
                     <p class="card-text"> {{ $contact->email }} </p>
-
-                    <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy', $contact) }}">
-                        @method('DELETE')
-                        @csrf
-                        <a
-                            href="#"
-                            class="btn btn-outline-danger btn-sm"
-                            onclick="document.getElementById('form_{{$contact->id}}').submit()">
-                            Delete
-                        </a>
-                    </form>
+                    @auth
+                        <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy', $contact) }}">
+                            @method('DELETE')
+                            @csrf
+                            <a
+                                href="#"
+                                class="btn btn-outline-danger btn-sm"
+                                onclick="document.getElementById('form_{{$contact->id}}').submit()">
+                                Delete
+                            </a>
+                        </form>
+                    @endauth
 
                 </div>
 
