@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ContactController;
 
 /*
@@ -15,15 +16,20 @@ use App\Http\Controllers\ContactController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class,'index']);
 
-
-// Route::resource('contacts', ContactController::class);
+Route::get('contacts/show/{contact}', [ContactController::class, 'show'])->name('contacts.show');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::resource('contacts', ContactController::class);
+
+    Route::prefix('contacts')->group(function () {
+        Route::get('/', [ContactController::class, 'index'])->name('contacts.index');
+        Route::post('/store', [ContactController::class, 'store'])->name('contacts.store');
+        Route::get('/create', [ContactController::class, 'create'])->name('contacts.create');
+        Route::get('/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+        Route::put('/update/{contact}', [ContactController::class, 'update'])->name('contacts.update');
+        Route::delete('/destroy/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+    });
 });
 
 Auth::routes();
