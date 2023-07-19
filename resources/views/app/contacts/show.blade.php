@@ -14,17 +14,25 @@
                     <h5 class="card-title"> {{ $contact->name }} </h5>
                     <p class="card-text"> {{ $contact->contact }} </p>
                     <p class="card-text"> {{ $contact->email }} </p>
+
                     @auth
-                        <form id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy', $contact) }}">
-                            @method('DELETE')
-                            @csrf
-                            <a
-                                href="#"
-                                class="btn btn-outline-danger btn-sm"
-                                onclick="document.getElementById('form_{{$contact->id}}').submit()">
-                                Delete
-                            </a>
-                        </form>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a class="btn btn-outline-warning btn-sm" href="{{ route('contacts.edit', $contact) }}">Edit</a>
+                            </div>
+                            <div class="col-md-6">
+                                <form style="float: right;" id="form_{{$contact->id}}" method="post" action="{{ route('contacts.destroy', $contact) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <a
+                                        href="#"
+                                        class="btn btn-outline-danger btn-sm"
+                                        onclick="document.getElementById('form_{{$contact->id}}').submit()">
+                                        Delete
+                                    </a>
+                                </form>
+                            </div>
+                        </div>
                     @endauth
 
                 </div>
