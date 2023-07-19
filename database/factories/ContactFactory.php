@@ -16,7 +16,7 @@ class ContactFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'contact' => $this->faker->numerify('139########'),
+            'contact' => $this->faker->numerify('98#######'),
             'email' => $this->faker->unique()->safeEmail,
             'user_id' => User::all()->random()->id,
         ];
